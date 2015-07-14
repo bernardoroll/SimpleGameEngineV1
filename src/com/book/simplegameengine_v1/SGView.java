@@ -11,9 +11,11 @@ public class SGView extends View {
 	private Point mDimensions = new Point();
 	private boolean mHasStarted;
 	private SGStepwatch mStepWatch = new SGStepwatch();
+	private SGImageFactory mImageFactory;
 	
 	public SGView(Context context) {
 		super(context);
+		mImageFactory = new SGImageFactory(context);
 	}
 	
 	@Override
@@ -43,6 +45,10 @@ public class SGView extends View {
 	
 	public Point getDimensions() {
 		return mDimensions;
+	}
+	
+	public SGImageFactory getImageFactory() {
+		return mImageFactory;
 	}
 	
 
