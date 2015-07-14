@@ -10,6 +10,7 @@ public class SGView extends View {
 	
 	private Point mDimensions = new Point();
 	private boolean mHasStarted;
+	private SGStepwatch mStepWatch = new SGStepwatch();
 	
 	public SGView(Context context) {
 		super(context);
@@ -18,12 +19,12 @@ public class SGView extends View {
 	@Override
 	public void onDraw(Canvas canvas) {
 		canvas.drawColor(Color.LTGRAY);
-		step(canvas);
+		step(canvas, mStepWatch.tick());
 		
 		invalidate();
 	}
 	
-	public void step(Canvas canvas) {
+	public void step(Canvas canvas, float elapsedTimeInSeconds) {
 		
 	}
 	
