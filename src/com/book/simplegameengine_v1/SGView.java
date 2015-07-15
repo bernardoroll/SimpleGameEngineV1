@@ -2,7 +2,6 @@ package com.book.simplegameengine_v1;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.view.View;
 
@@ -12,15 +11,17 @@ public class SGView extends View {
 	private boolean mHasStarted;
 	private SGStepwatch mStepWatch = new SGStepwatch();
 	private SGImageFactory mImageFactory;
+	private SGRenderer mRenderer;
 	
 	public SGView(Context context) {
 		super(context);
 		mImageFactory = new SGImageFactory(context);
+		mRenderer = new SGRenderer();
 	}
 	
 	@Override
 	public void onDraw(Canvas canvas) {
-		canvas.drawColor(Color.LTGRAY);
+		//canvas.drawColor(Color.LTGRAY);
 		step(canvas, mStepWatch.tick());
 		
 		invalidate();
@@ -51,5 +52,8 @@ public class SGView extends View {
 		return mImageFactory;
 	}
 	
+	public SGRenderer getRenderer() {
+		return mRenderer;
+	}
 
 }
