@@ -5,14 +5,19 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 public class SGActivity extends Activity {
 	
-	public static final String TAG = "SimpleGameEngine";
 	private SGPreferences mPreferences;
+	
+	protected SGInputPublisher mInputPublisher = null;
+	
+	public static final String TAG = "SimpleGameEngine";
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -55,6 +60,24 @@ public class SGActivity extends Activity {
 	protected void onDestroy(){
 		super.onDestroy();
 		Log.v(TAG, "onDestroy() chamado.");
+	}
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		if(mInputPublisher != null) {
+			return mInputPublisher.onTouchEvent(event);
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public void setInputPublisher(SGInputPublisher inputPublisher) {
+		mInputPublisher = inputPublisher;
+	}
+	
+	public SGInputPublisher getInputPublisher() {
+		return mInputPublisher;
 	}
 	
 	public void enableKeepScreenOn(){
